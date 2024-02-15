@@ -22,9 +22,12 @@ def write_csv(data):
     # Add the dollar sign before List Price and Sale Price
     data['List Price'] = "${}".format(data['List Price'])
     data['Sale Price'] = "${}".format(data['Sale Price'])
+    data['eBay Price'] = "${}".format(data['eBay Price'])
+    data['Shipping Price'] = "${}".format(data['Shipping Price'])
+
 
     with open(CSV_FILE, 'a', newline='') as csvfile:
-        fieldnames = ['Sale Date', 'Item Description', 'eBay Number', 'Days on Market', 'List Price', 'Sale Price']
+        fieldnames = ['Sale Date', 'Item Description', 'eBay Number', 'Days on Market', 'List Price', 'Sale Price', 'eBay Price', 'Shipping Price']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writerow(data)
 
@@ -41,6 +44,8 @@ def add_sale():
     days_on_market = request.form['days_on_market']
     list_price = request.form['list_price']
     sale_price = request.form['sale_price']
+    ebay_price = request.form['ebay_price']
+    shipping_price = request.form['shipping_price']
 
     data = {
         'Sale Date': sale_date,
@@ -48,7 +53,9 @@ def add_sale():
         'eBay Number': ebay_number,
         'Days on Market': days_on_market,
         'List Price': list_price,
-        'Sale Price': sale_price
+        'Sale Price': sale_price,
+        'eBay Price': ebay_price,
+        'Shipping Price': shipping_price
     }
 
     write_csv(data)
