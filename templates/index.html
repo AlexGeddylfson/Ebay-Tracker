@@ -35,16 +35,24 @@
         }
 
         .form-group {
-            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            width: 100%;
         }
 
-        label {
+        .form-group .column {
+            flex: 1;
+            width: calc(50% - 5px);
+        }
+
+        .form-group label {
             display: block;
             font-weight: bold;
             margin-bottom: 5px;
         }
 
-        input, select {
+        .form-group input, .form-group select {
             width: 100%;
             padding: 10px;
             margin-bottom: 10px;
@@ -66,36 +74,44 @@
 
     <form action="/add_sale" method="post">
         <div class="form-group">
-            <label for="item_description">Item Description:</label>
-            <input type="text" id="item_description" name="item_description" required>
+            <div class="column">
+                <label for="item_description">Item Description:</label>
+                <input type="text" id="item_description" name="item_description" required>
+            </div>
+            <div class="column">
+                <label for="ebay_number">eBay Number:</label>
+                <input type="text" id="ebay_number" name="ebay_number" required>
+            </div>
         </div>
         <div class="form-group">
-            <label for="ebay_number">eBay Number:</label>
-            <input type="text" id="ebay_number" name="ebay_number" required>
+            <div class="column">
+                <label for="days_on_market">Days on Market:</label>
+                <input type="number" id="days_on_market" name="days_on_market" required>
+            </div>
+            <div class="column">
+                <label for="list_price">List Price:</label>
+                <input type="number" id="list_price" name="list_price" step="0.01" required>
+            </div>
         </div>
         <div class="form-group">
-            <label for="days_on_market">Days on Market:</label>
-            <input type="number" id="days_on_market" name="days_on_market" required>
+            <div class="column">
+                <label for="ebay_price">eBay Fee:</label>
+                <input type="number" id="ebay_price" name="ebay_price" step="0.01" required>
+            </div>
+            <div class="column">
+                <label for="shipping_price">Shipping Fee:</label>
+                <input type="number" id="shipping_price" name="shipping_price" step="0.01" required>
+            </div>
         </div>
         <div class="form-group">
-            <label for="list_price">List Price:</label>
-            <input type="number" id="list_price" name="list_price" step="0.01" required>
-        </div>
-        <div class="form-group">
-            <label for="list_price">eBay Fee:</label>
-            <input type="number" id="ebay_price" name="ebay_price" step="0.01" required>
-        </div>
-        <div class="form-group">
-            <label for="list_price">Shipping Fee:</label>
-            <input type="number" id="shipping_price" name="shipping_price" step="0.01" required>
-        </div>
-        <div class="form-group">
-            <label for="sale_price">Sale Price:</label>
-            <input type="number" id="sale_price" name="sale_price" step="0.01" required>
-        </div>
-        <div class="form-group">
-            <label for="sale_date">Sale Date:</label>
-            <input type="date" id="sale_date" name="sale_date" required>
+            <div class="column">
+                <label for="sale_price">Sale Price:</label>
+                <input type="number" id="sale_price" name="sale_price" step="0.01" required>
+            </div>
+            <div class="column">
+                <label for="sale_date">Sale Date:</label>
+                <input type="date" id="sale_date" name="sale_date" required>
+            </div>
         </div>
         <button type="submit" class="btn">Add Sale</button>
     </form>
