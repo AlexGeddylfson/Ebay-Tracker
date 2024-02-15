@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eBay Sales Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #4CAF50;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>eBay Sales Tracker</h1>
+
+    <form action="/add_sale" method="post">
+        <div class="form-group">
+            <label for="item_description">Item Description:</label>
+            <input type="text" id="item_description" name="item_description" required>
+        </div>
+        <div class="form-group">
+            <label for="ebay_number">eBay Number:</label>
+            <input type="text" id="ebay_number" name="ebay_number" required>
+        </div>
+        <div class="form-group">
+            <label for="days_on_market">Days on Market:</label>
+            <input type="number" id="days_on_market" name="days_on_market" required>
+        </div>
+        <div class="form-group">
+            <label for="list_price">List Price:</label>
+            <input type="number" id="list_price" name="list_price" step="0.01" required>
+        </div>
+        <div class="form-group">
+            <label for="sale_price">Sale Price:</label>
+            <input type="number" id="sale_price" name="sale_price" step="0.01" required>
+        </div>
+        <div class="form-group">
+            <label for="sale_date">Sale Date:</label>
+            <input type="date" id="sale_date" name="sale_date" required>
+        </div>
+        <button type="submit" class="btn">Add Sale</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Sale Date</th>
+                <th>Item Description</th>
+                <th>eBay Number</th>
+                <th>Days on Market</th>
+                <th>List Price</th>
+                <th>Sale Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for sale in sales %}
+                <tr>
+                    <td>{{ sale['Sale Date'] }}</td>
+                    <td>{{ sale['Item Description'] }}</td>
+                    <td>{{ sale['eBay Number'] }}</td>
+                    <td>{{ sale['Days on Market'] }}</td>
+                    <td>{{ sale['List Price'] }}</td>
+                    <td>{{ sale['Sale Price'] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="/export_csv" class="btn" download="ebay_sales.csv">Export CSV</a>
+</body>
+</html>
